@@ -151,7 +151,7 @@ This week, you and your partner(s) will implement a basic full stack application
 
 - Define a constructor function called `Book` which takes an object literal as an argument.
   - Iterate over the argument's object keys to assign key/value pairs for creating a Book instance.
-  - Enclose your code in an IFFE.
+  - Enclose your code in an IIFE using the module pattern seen in [Todo App Demo](https://github.com/codefellows/seattle-301n10/tree/master/11-production-deployment/demos/todo-app).
 - Define a `Book` instance method called `toHtml` which, when invoked, compiles the Handlebars template with an id of `book-list-template`, and return the template with that instance's content.
 - Define a static property on `Book` called `all`, and assign an empty array as it's value.
 - Define a static method on `Book` called `loadAll` which takes `rows` as an argument, and sorts `rows` by `title`, maps over `rows` to create an array of `Book` instances, and then assigns the new array of `Book`s to `Book.all`.
@@ -159,8 +159,8 @@ This week, you and your partner(s) will implement a basic full stack application
   - On success, pass the results to `Book.loadAll`, and then invoke the `callback`.
   - On failure, invoke the `errorCallback` (see details below)
 - Create a Book View:
-  - Enclose your code in an IFFE.
-  - Define a global variable called `bookView` and assign an empty object literal as its value.
+  - Enclose your code in an IIFE using the module pattern.
+  - Define a variable called `bookView` and assign an empty object literal as its value.
   - Define a method on `bookView` called `initIndexPage` which hides any element with a class of `container`, shows any element with a class of `book-view`, and maps over the Book instances stored in `Book.all` to render each and append them to an element with the id of `book-list`.
   - Using jQuery's `Document.ready` functionality, invoke `Book.fetchAll` when the DOM has loaded, and pass `bookView.initIndexPage` as it's argument.
 
@@ -168,8 +168,8 @@ This week, you and your partner(s) will implement a basic full stack application
 *8. As a user, I want a view which displays any error messages that occur during the usage of my book list application.*
 
 - Create an Error View:
-  - Enclose your code in an IFFE.
-  - Define a global variable called `error-view` and assign an empty object literal as it's value.
+  - Enclose your code in an IFFE and use the module pattern.
+  - Define a variable called `errorView` and assign an empty object literal as it's value.
   - Define a method on `errorView` called `initErrorPage` which takes an argument of `err` and does the following:
     - Hides any element with a class of `container` (or the class you chose to use).
     - Shows any element with a class of `error-view` (or the class you chose to use).
@@ -182,6 +182,8 @@ This week, you and your partner(s) will implement a basic full stack application
 *9. As a developer, I want the client to have the ability to request all resources from the database through a RESTful endpoint.*
 
 - Create a new endpoint at `GET /api/v1/books` which will retrieve an array of book objects from the database, limited to only the `book_id`, `title`, `author`, and `image_url`.
+- When your client code requests the books from the server you will get Cross Origin Request Sharing (aka CORS) error. 
+  - See [Todo App demo](https://github.com/codefellows/seattle-301n10/tree/master/11-production-deployment/demos/todo-app) to allow requests to your server from any origin.
 
 *10. As a user, I want a simple, clean looking UI so that my application is easy to navigate.*
 
